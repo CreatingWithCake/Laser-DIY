@@ -875,16 +875,16 @@
  * the position of the toolhead relative to the workspace.
  */
 
-//#define SENSORLESS_BACKOFF_MM  { 2, 2, 0 }  // (linear=mm, rotational=°) Backoff from endstops before sensorless homing
+#define SENSORLESS_BACKOFF_MM  { 10, 10 }  // (linear=mm, rotational=°) Backoff from endstops before sensorless homing
 
-#define HOMING_BUMP_MM      { 5, 5, 2 }       // (linear=mm, rotational=°) Backoff from endstops after first bump
+#define HOMING_BUMP_MM      { 0, 0, 4 }       // (linear=mm, rotational=°) Backoff from endstops after first bump
 #define HOMING_BUMP_DIVISOR { 2, 2, 4 }       // Re-Bump Speed Divisor (Divides the Homing Feedrate)
 
 //#define HOMING_BACKOFF_POST_MM { 2, 2, 2 }  // (linear=mm, rotational=°) Backoff from endstops after homing
 //#define XY_COUNTERPART_BACKOFF_MM 0         // (mm) Backoff X after homing Y, and vice-versa
 
 //#define QUICK_HOME                          // If G28 contains XY do a diagonal move first
-//#define HOME_Y_BEFORE_X                     // If G28 contains XY home Y before X
+#define HOME_Y_BEFORE_X                     // If G28 contains XY home Y before X
 //#define HOME_Z_FIRST                        // Home Z first. Requires a Z-MIN endstop (not a probe).
 //#define CODEPENDENT_XY_HOMING               // If X/Y can't home without homing Y/X first
 
@@ -1270,7 +1270,7 @@
  * vibration and surface artifacts. The algorithm adapts to provide the best possible step smoothing at the
  * lowest stepping frequencies.
  */
-//#define ADAPTIVE_STEP_SMOOTHING
+#define ADAPTIVE_STEP_SMOOTHING
 
 /**
  * Custom Microstepping
@@ -1409,13 +1409,13 @@
   #endif
 
   // Include a page of printer information in the LCD Main Menu
-  //#define LCD_INFO_MENU
+  #define LCD_INFO_MENU
   #if ENABLED(LCD_INFO_MENU)
     //#define LCD_PRINTER_INFO_IS_BOOTSCREEN // Show bootscreen(s) instead of Printer Info pages
   #endif
 
   // BACK menu items keep the highlight at the top
-  //#define TURBO_BACK_MENU_ITEM
+  #define TURBO_BACK_MENU_ITEM
 
   // Insert a menu for preheating at the top level to allow for quick access
   //#define PREHEAT_SHORTCUT_MENU_ITEM
@@ -1429,7 +1429,7 @@
 
 #if EITHER(HAS_DISPLAY, DWIN_LCD_PROUI)
   // The timeout to return to the status screen from sub-menus
-  //#define LCD_TIMEOUT_TO_STATUS 15000   // (ms)
+  #define LCD_TIMEOUT_TO_STATUS 30000   // (ms)
 
   #if ENABLED(SHOW_BOOTSCREEN)
     #define BOOTSCREEN_TIMEOUT 4000       // (ms) Total Duration to display the boot screen(s)
@@ -1735,7 +1735,7 @@
    *
    * :[ 'LCD', 'ONBOARD', 'CUSTOM_CABLE' ]
    */
-  //#define SDCARD_CONNECTION LCD
+  #define SDCARD_CONNECTION ONBOARD
 
   // Enable if SD detect is rendered useless (e.g., by using an SD extender)
   //#define NO_SD_DETECT
@@ -1775,11 +1775,11 @@
 #if HAS_MARLINUI_U8GLIB
   // Save many cycles by drawing a hollow frame or no frame on the Info Screen
   //#define XYZ_NO_FRAME
-  #define XYZ_HOLLOW_FRAME
+  //#define XYZ_HOLLOW_FRAME
 
   // A bigger font is available for edit items. Costs 3120 bytes of flash.
   // Western only. Not available for Cyrillic, Kana, Turkish, Greek, or Chinese.
-  //#define USE_BIG_EDIT_FONT
+  #define USE_BIG_EDIT_FONT
 
   // A smaller font may be used on the Info Screen. Costs 2434 bytes of flash.
   // Western only. Not available for Cyrillic, Kana, Turkish, Greek, or Chinese.
@@ -1826,9 +1826,9 @@
    */
   //#define STATUS_COMBINE_HEATERS    // Use combined heater images instead of separate ones
   //#define STATUS_HOTEND_NUMBERLESS  // Use plain hotend icons instead of numbered ones (with 2+ hotends)
-  #define STATUS_HOTEND_INVERTED      // Show solid nozzle bitmaps when heating (Requires STATUS_HOTEND_ANIM for numbered hotends)
-  #define STATUS_HOTEND_ANIM          // Use a second bitmap to indicate hotend heating
-  #define STATUS_BED_ANIM             // Use a second bitmap to indicate bed heating
+  //#define STATUS_HOTEND_INVERTED      // Show solid nozzle bitmaps when heating (Requires STATUS_HOTEND_ANIM for numbered hotends)
+  //#define STATUS_HOTEND_ANIM          // Use a second bitmap to indicate hotend heating
+  //#define STATUS_BED_ANIM             // Use a second bitmap to indicate bed heating
   #define STATUS_CHAMBER_ANIM         // Use a second bitmap to indicate chamber heating
   //#define STATUS_CUTTER_ANIM        // Use a second bitmap to indicate spindle / laser active
   //#define STATUS_COOLER_ANIM        // Use a second bitmap to indicate laser cooling
@@ -1837,7 +1837,7 @@
   //#define STATUS_ALT_FAN_BITMAP     // Use the alternative fan bitmap
   //#define STATUS_FAN_FRAMES 3       // :[0,1,2,3,4] Number of fan animation frames
   //#define STATUS_HEAT_PERCENT       // Show heating in a progress bar
-  //#define BOOT_MARLIN_LOGO_ANIMATED // Animated Marlin logo. Costs ~3260 (or ~940) bytes of flash.
+  #define BOOT_MARLIN_LOGO_ANIMATED // Animated Marlin logo. Costs ~3260 (or ~940) bytes of flash.
 
   // Frivolous Game Options
   //#define MARLIN_BRICKOUT
@@ -1848,7 +1848,7 @@
 #endif // HAS_MARLINUI_U8GLIB
 
 #if HAS_MARLINUI_U8GLIB || IS_DWIN_MARLINUI
-  #define MENU_HOLLOW_FRAME           // Enable to save many cycles by drawing a hollow frame on Menu Screens
+  //#define MENU_HOLLOW_FRAME           // Enable to save many cycles by drawing a hollow frame on Menu Screens
   //#define OVERLAY_GFX_REVERSE       // Swap the CW/CCW indicators in the graphics overlay
 #endif
 
@@ -2440,7 +2440,7 @@
  * Currently handles M108, M112, M410, M876
  * NOTE: Not yet implemented for all platforms.
  */
-//#define EMERGENCY_PARSER
+#define EMERGENCY_PARSER
 
 /**
  * Realtime Reporting (requires EMERGENCY_PARSER)
@@ -3023,14 +3023,14 @@
    */
   #if HAS_STEALTHCHOP
     #define STEALTHCHOP_XY
-    #define STEALTHCHOP_Z
-    #define STEALTHCHOP_I
-    #define STEALTHCHOP_J
-    #define STEALTHCHOP_K
-    #define STEALTHCHOP_U
-    #define STEALTHCHOP_V
-    #define STEALTHCHOP_W
-    #define STEALTHCHOP_E
+    //#define STEALTHCHOP_Z
+    //#define STEALTHCHOP_I
+    //#define STEALTHCHOP_J
+    //#define STEALTHCHOP_K
+    //#define STEALTHCHOP_U
+    //#define STEALTHCHOP_V
+    //#define STEALTHCHOP_W
+    //#define STEALTHCHOP_E
   #endif
 
   /**
@@ -3085,7 +3085,7 @@
    * M912 - Clear stepper driver overtemperature pre-warn condition flag.
    * M122 - Report driver parameters (Requires TMC_DEBUG)
    */
-  //#define MONITOR_DRIVER_STATUS
+  #define MONITOR_DRIVER_STATUS
 
   #if ENABLED(MONITOR_DRIVER_STATUS)
     #define CURRENT_STEP_DOWN     50  // [mA]
@@ -3153,13 +3153,13 @@
    * Comment *_STALL_SENSITIVITY to disable sensorless homing for that axis.
    * @section tmc/stallguard
    */
-  //#define SENSORLESS_HOMING // StallGuard capable drivers only
+  #define SENSORLESS_HOMING // StallGuard capable drivers only
 
   #if EITHER(SENSORLESS_HOMING, SENSORLESS_PROBING)
     // TMC2209: 0...255. TMC2130: -64...63
-    #define X_STALL_SENSITIVITY  8
+    #define X_STALL_SENSITIVITY  50
     #define X2_STALL_SENSITIVITY X_STALL_SENSITIVITY
-    #define Y_STALL_SENSITIVITY  8
+    #define Y_STALL_SENSITIVITY  50
     #define Y2_STALL_SENSITIVITY Y_STALL_SENSITIVITY
     //#define Z_STALL_SENSITIVITY  8
     //#define Z2_STALL_SENSITIVITY Z_STALL_SENSITIVITY
@@ -3172,7 +3172,7 @@
     //#define V_STALL_SENSITIVITY  8
     //#define W_STALL_SENSITIVITY  8
     //#define SPI_ENDSTOPS              // TMC2130 only
-    //#define IMPROVE_HOMING_RELIABILITY
+    #define IMPROVE_HOMING_RELIABILITY
   #endif
 
   // @section tmc/config
@@ -3199,7 +3199,7 @@
    * Enable M122 debugging command for TMC stepper drivers.
    * M122 S0/1 will enable continuous reporting.
    */
-  //#define TMC_DEBUG
+  #define TMC_DEBUG
 
   /**
    * You can set your own advanced settings by filling in predefined functions.
@@ -3318,14 +3318,19 @@
  * See https://marlinfw.org/docs/configuration/2.0.9/laser_spindle.html for more config details.
  */
 //#define SPINDLE_FEATURE
-//#define LASER_FEATURE
+#define LASER_FEATURE
 #if EITHER(SPINDLE_FEATURE, LASER_FEATURE)
-  #define SPINDLE_LASER_ACTIVE_STATE    LOW    // Set to "HIGH" if SPINDLE_LASER_ENA_PIN is active HIGH
+  #define SPINDLE_LASER_ENA_PIN         P2_04
+  #define SPINDLE_LASER_PWM_PIN         P2_07
+
+  #define SPINDLE_LASER_ACTIVE_STATE    HIGH    // Set to "HIGH" if SPINDLE_LASER_ENA_PIN is active HIGH
 
   #define SPINDLE_LASER_USE_PWM                // Enable if your controller supports setting the speed/power
-  #if ENABLED(SPINDLE_LASER_USE_PWM)
+  #if ENABLED(SPINDLE_LASER_USE_PWM)  
+    
+    #define SPINDLE_LASER_PWM           true   // Set to "true" if your controller supports setting the speed/power  
     #define SPINDLE_LASER_PWM_INVERT    false  // Set to "true" if the speed/power goes up when you want it to go slower
-    #define SPINDLE_LASER_FREQUENCY     2500   // (Hz) Spindle/laser frequency (only on supported HALs: AVR, ESP32, and LPC)
+    #define SPINDLE_LASER_FREQUENCY     2000   // (Hz) Spindle/laser frequency (only on supported HALs: AVR, ESP32, and LPC)
                                                // ESP32: If SPINDLE_LASER_PWM_PIN is onboard then <=78125Hz. For I2S expander
                                                //  the frequency determines the PWM resolution. 2500Hz = 0-100, 977Hz = 0-255, ...
                                                //  (250000 / SPINDLE_LASER_FREQUENCY) = max value.
@@ -3398,7 +3403,7 @@
       #define SPEED_POWER_INTERCEPT       0    // (%) 0-100 i.e., Minimum power percentage
       #define SPEED_POWER_MIN             0    // (%) 0-100
       #define SPEED_POWER_MAX           100    // (%) 0-100
-      #define SPEED_POWER_STARTUP        80    // (%) M3/M4 speed/power default (with no arguments)
+      #define SPEED_POWER_STARTUP        0    // (%) M3/M4 speed/power default (with no arguments)
     #endif
 
     // Define the minimum and maximum test pulse time values for a laser test fire function
@@ -3697,11 +3702,11 @@
  * Note that G0 feedrates should be used with care for 3D printing (if used at all).
  * High feedrates may cause ringing and harm print quality.
  */
-//#define PAREN_COMMENTS      // Support for parentheses-delimited comments
-//#define GCODE_MOTION_MODES  // Remember the motion mode (G0 G1 G2 G3 G5 G38.X) and apply for X Y Z E F, etc.
+#define PAREN_COMMENTS      // Support for parentheses-delimited comments
+#define GCODE_MOTION_MODES  // Remember the motion mode (G0 G1 G2 G3 G5 G38.X) and apply for X Y Z E F, etc.
 
 // Enable and set a (default) feedrate for all G0 moves
-//#define G0_FEEDRATE 3000 // (mm/min)
+#define G0_FEEDRATE 3000 // (mm/min)
 #ifdef G0_FEEDRATE
   //#define VARIABLE_G0_FEEDRATE // The G0 feedrate is set by F in G0 motion mode
 #endif
