@@ -3153,7 +3153,8 @@
    * Comment *_STALL_SENSITIVITY to disable sensorless homing for that axis.
    * @section tmc/stallguard
    */
-  #define SENSORLESS_HOMING // StallGuard capable drivers only
+  #define DIAG_JUMPERS_REMOVED
+  //#define SENSORLESS_HOMING // StallGuard capable drivers only
 
   #if EITHER(SENSORLESS_HOMING, SENSORLESS_PROBING)
     // TMC2209: 0...255. TMC2130: -64...63
@@ -3320,8 +3321,8 @@
 //#define SPINDLE_FEATURE
 #define LASER_FEATURE
 #if EITHER(SPINDLE_FEATURE, LASER_FEATURE)
-  #define SPINDLE_LASER_ENA_PIN         PB3 //PB3 Check if correct
-  #define SPINDLE_LASER_PWM_PIN         PB4 //PB4
+  #define SPINDLE_LASER_ENA_PIN         PB3 //PB3 CHECK IF CORRECT
+  #define SPINDLE_LASER_PWM_PIN         PB4 //PB4 CHECK IF CORRECT
 
   #define SPINDLE_LASER_ACTIVE_STATE    HIGH    // Set to "HIGH" if SPINDLE_LASER_ENA_PIN is active HIGH
 
@@ -3329,7 +3330,7 @@
   #if ENABLED(SPINDLE_LASER_USE_PWM)  
      
     #define SPINDLE_LASER_PWM_INVERT    false  // Set to "true" if the speed/power goes up when you want it to go slower
-    #define SPINDLE_LASER_FREQUENCY     2000   // (Hz) Spindle/laser frequency (only on supported HALs: AVR, ESP32, and LPC)
+    #define SPINDLE_LASER_FREQUENCY     2000   // (Hz) Spindle/laser frequency (only on supported HALs: AVR, ESP32, and LPC) CHECK IF CORRECT
                                                // ESP32: If SPINDLE_LASER_PWM_PIN is onboard then <=78125Hz. For I2S expander
                                                //  the frequency determines the PWM resolution. 2500Hz = 0-100, 977Hz = 0-255, ...
                                                //  (250000 / SPINDLE_LASER_FREQUENCY) = max value.
